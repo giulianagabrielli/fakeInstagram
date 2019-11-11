@@ -1,3 +1,7 @@
+<?php
+    $posts = $_REQUEST['posts'];
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,13 +17,15 @@
     
     <?php include "views/includes/header.php"; ?>
     <main class="board">
+    <?php foreach($posts as $post): ?>
         <div class="card mt-5">
-            <img id="cardimg" src="views/img/teste.png" alt="Card image cap">
+            <img id="cardimg" src="<?php echo $post->img; ?>" alt="Card image cap"> <!-- seta magra pra acessar o atributo do objeto. Seria a coluna do banco de dados -->
             <div class="card-body">
-                <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet rerum modi, fuga tempora officiis nam nostrum aut fugiat vitae, dolore illo itaque porro dignissimos sapiente quidem rem excepturi perferendis distinctio.</p>
+                <p class="card-text"> <?php echo $post->descricao; ?></p>
             </div>
         </div>
-        <a class="float-button" href="/instagran/formulario-post">&#10010;</a>
+    <?php endforeach; ?>
+        <a class="float-button" href="/fakeinstagram/formulario-post">&#10010;</a>
     </main>
     
 
