@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c> 
+  RewriteEngine On 
+
+  # Página de post
+  RewriteRule ^([a-z0-9-]+)/?$ index.php?$1 [NC,L] 
+</IfModule>
+
+
+
+
+
+
+# regra para sobrescrever. Até o cifrão chama expressão regular, serve para filtrar texto. Vai tranformar o que o usuário digitou para ?$1.
+# esse arquivo serve para ocultar o index.php do usuário
