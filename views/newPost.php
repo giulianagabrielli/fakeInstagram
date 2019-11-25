@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>New Post</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="views/css/styles.css">
 </head>
@@ -12,10 +12,10 @@
     
     <?php include "views/includes/header.php"; ?>
     <main class="board">
-        <h1> Cadastro de novo Post </h1>
+        <h1> Cadastro de Novo Post </h1>
         <form action="/fakeinstagram/cadastrar-post" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="exampleFormControlFile1">Example file input</label>
+                <label for="exampleFormControlFile1">Imagem</label>
                 <input type="file" class="form-control-file" name="img" id="exampleFormControlFile1">
             </div>
             <div class="form-group">

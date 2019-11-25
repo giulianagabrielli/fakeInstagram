@@ -4,18 +4,18 @@ include_once "Conexao.php";
 
 class Post extends Conexao {
 
-    public function criarPost($image, $descricao){ // função para criar um post
-        $db = parent::criarConexao();  // para acessar o método da classe mãe - parent. Comunicando com o banco de dados
+    public function criarPost($image, $descricao){ 
+        $db = parent::criarConexao();  // Comunicando com o banco de dados. Para acessar um método da classe mãe: parent. 
 
         $query = $db->prepare("INSERT INTO posts(img, descricao) values(?,?)");
         return $query->execute([$image, $descricao]);
     }
 
-    public function listarPosts(){ // função para listar os posts
+    public function listarPosts(){ 
         $db = parent::criarConexao(); 
 
-        $query = $db->query('SELECT * from posts ORDER BY id DESC'); // pegando posts do banco de dados
-        $resultado = $query->fetchAll(PDO::FETCH_OBJ); // query fixa, não depende do que o usuário vai digitar, por isso não tem prepare/execute. FETCH_OBJ vai retornar uma lista de objetos. Cada post é um objeto.
+        $query = $db->query('SELECT * from posts ORDER BY id DESC'); 
+        $resultado = $query->fetchAll(PDO::FETCH_OBJ); 
         return $resultado;
         
     }
