@@ -12,23 +12,23 @@
     
     <?php include "views/includes/header.php"; ?>
     <main class="board">
-        <h1> Cadastro de Novo Usuário </h1>
+        <h1> Cadastro de Novo Usuário </h1> <!-- dúvida na action -->
         <form action="/fakeinstagram/cadastrar-user" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="imagemPerfil">Foto de Perfil</label>
-                <input type="file" class="form-control-file" name="imagemPerfil" id="imagemPerfil">
+                <input type="file" class="form-control-file" name="imagemPerfil">
             </div>
             <div class="form-group">
                 <label for="nomeCompleto">Nome Completo</label>
-                <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" placeholder="Insira seu nome completo">
+                <input type="text" class="form-control" name="nomeCompleto" placeholder="Insira seu nome completo">
             </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Insira seu e-mail">
+                <input type="email" class="form-control" name="email" placeholder="Insira seu e-mail">
             </div>
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" class="form-control" id="senha" name="senha" placeholder="Insira sua senha de 8 dígitos">
+                <input type="password" class="form-control" name="senha" placeholder="Insira sua senha de 8 dígitos">
             </div>
             <button type="submit" class="btn btn-success">Cadastrar</button>
         </form>

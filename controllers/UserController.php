@@ -9,30 +9,42 @@ class UserController {
             case "cadastrar-user":
                 $this->cadastroUser();
             break;   
+            case "formulario-user":
+                $this->viewFormularioUser();
+            break;
         }
     }
 
+    // formulário para novo usário
     private function viewFormularioUser(){
         include "views/newUser.php";
     }
 
-
     private function cadastroUser(){
+
+        //nomeCompleto, email e senha
         $nomeCompleto = $_POST['nomeCompleto'];
         $email = $_POST['email'];
         $senha = $_POST['senha'];
 
         //imagem de perfil
-        $imagemPerfil = $_FILES['img']['name']; // Dúvida no img. Qual é o nome? img ou imagemPerfil
-        $linkTemp = $_FILES ['img']['tmp_name'];
+        $imagemPerfil = $_FILES['imagemPerfil']['name']; 
+        $linkTemp = $_FILES ['imagemPerfil']['tmp_name'];
         $caminhoImagemPerfil = "views/img/$imagemPerfil";
-        move_uploaded_file($linkTemp, $caminhoSalvar);
+        move_uploaded_file($linkTemp, $caminhoImagemPerfil);
 
         //criando objeto User
         $user = new User(); 
-        $resultado = $user->criarUsuario($caminhoImagemPerfil, $nomeCompleto, $email, $senha); // função em User.php
+        $resultado = $user->criarUsuario($caminhoImagemPerfil, $nomeCompleto, $email, $senha);
 
-        //precisa de verificação??
+        //verificação
+        if ($resultado){
+            header('Location:/fakeinstagram/posts'); 
+        } else {
+            echo "Deu errado!!";
+        }
 
     }
+
+
 }

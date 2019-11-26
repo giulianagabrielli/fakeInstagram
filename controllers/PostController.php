@@ -28,10 +28,11 @@ class PostController {
     }
 
     private function cadastroPost(){
+        // descrição
+        $descricao = $_POST['descricao']; 
 
-        $descricao = $_POST['descricao']; // descrição que a pessoa vai digitar
-
-        $nomeArquivo = $_FILES['img']['name']; // imagem que a pessoa vai enviar
+        // imagem
+        $nomeArquivo = $_FILES['img']['name']; 
         $linkTemp = $_FILES ['img']['tmp_name'];
         $caminhoSalvar = "views/img/$nomeArquivo";
         move_uploaded_file($linkTemp, $caminhoSalvar);

@@ -23,4 +23,9 @@ switch($rotas){
         include "controllers/UserController.php";
         $controller = new UserController();
         $controller->acao($rotas);
+    case "formulario-user":
+        include "controllers/UserController.php";
+        $controller = new UserController();
+        $controller->acao($rotas);
+    break;
 } 
