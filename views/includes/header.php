@@ -10,7 +10,7 @@
                     <a class="nav-link active" href="/fakeinstagram/formulario-user">Cadastro</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="/fakeinstagram/formulario-login-user">Login</a>
                 </li>
             </ul>
         </nav>

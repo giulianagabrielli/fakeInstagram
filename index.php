@@ -28,4 +28,15 @@ switch($rotas){
         $controller = new UserController();
         $controller->acao($rotas);
     break;
+    case "login-user":
+        include "controllers/UserController.php";
+        $controller = new UserController();
+        $controller->acao($rotas);
+    break;
+    case "formulario-login-user":
+        include "controllers/UserController.php";
+        $controller = new UserController();
+        $controller->acao($rotas);
+    break;
+
 } 

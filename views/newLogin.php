@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>New User</title>
+    <title>Login User</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="views/css/styles.css">
 </head>
@@ -12,16 +12,8 @@
     
     <?php include "views/includes/header.php"; ?>
     <main class="board">
-        <h1> Cadastro de Novo Usuário </h1> 
-        <form action="/fakeinstagram/cadastrar-user" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="imagemPerfil">Foto de Perfil</label>
-                <input type="file" class="form-control-file" name="imagemPerfil">
-            </div>
-            <div class="form-group">
-                <label for="nomeCompleto">Nome Completo</label>
-                <input type="text" class="form-control" name="nomeCompleto" placeholder="Insira seu nome completo">
-            </div>
+        <h1> Login de Usuário </h1> 
+        <form action="/fakeinstagram/login-user" method="post">
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input type="email" class="form-control" name="email" placeholder="Insira seu e-mail">
@@ -30,7 +22,7 @@
                 <label for="senha">Senha</label>
                 <input type="password" class="form-control" name="senha" placeholder="Insira sua senha de 8 dígitos">
             </div>
-            <button type="submit" class="btn btn-success">Cadastrar</button>
+            <button type="submit" class="btn btn-success">Login</button>
         </form>
 
     </main>

@@ -9,7 +9,7 @@ class User extends Conexao {
         // comunicando com o banco de dados
         $db = parent::criarConexao();  
 
-        // O que isso está fazendo???? Manda o banco e retorna objeto????
+        // colocando dados no banco e retornando objeto????
         $query = $db->prepare("INSERT INTO users(imagemPerfil, nomeCompleto, email, senha) values(?,?,?,?)");
         return $query->execute([$imagemPerfil, $nomeCompleto, $email, $senha]);
     }
