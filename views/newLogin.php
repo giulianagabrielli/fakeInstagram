@@ -16,11 +16,11 @@
         <form action="/fakeinstagram/login-user" method="post">
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control" name="email" placeholder="Insira seu e-mail">
+                <input type="email" class="form-control" name="email" placeholder="Insira seu e-mail" required>
             </div>
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" class="form-control" name="senha" placeholder="Insira sua senha de 8 dígitos">
+                <input type="password" class="form-control" name="senha" placeholder="Insira sua senha de 8 dígitos" required>
             </div>
             <button type="submit" class="btn btn-success">Login</button>
         </form>

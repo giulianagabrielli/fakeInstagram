@@ -19,14 +19,17 @@ class PostController {
         }
     }
 
+    // formulário de novo post
     private function viewFormularioPost(){
         include "views/newPost.php";
     }
 
+    // visualização das imagens postadas
     private function viewPosts(){
         include "views/posts.php";
     }
 
+    // pegando as informações do formulário de post e enviando para o banco de dados
     private function cadastroPost(){
         // descrição
         $descricao = $_POST['descricao']; 
@@ -37,16 +40,22 @@ class PostController {
         $caminhoSalvar = "views/img/$nomeArquivo";
         move_uploaded_file($linkTemp, $caminhoSalvar);
 
-        $post = new Post(); // criando objeto Post
-        $resultado = $post->criarPost($caminhoSalvar, $descricao); // função em Post.php
+        // usuário logado
+        $usuarioLogado = $_SESSION['id_logado']['0'];
 
+        // criando objeto Post
+        $post = new Post(); 
+        $resultado = $post->criarPost($caminhoSalvar, $descricao, $usuarioLogado); 
+
+        // validação
         if ($resultado){
-            header('Location:/fakeinstagram/posts'); //header para mover o usuário para outro lugar
+            header('Location:/fakeinstagram/posts');
         } else {
-            echo "Deu errado!!";
+            echo "Não foi possível cadastrar o post!";
         }
     }
 
+    // colocando os posts em ordem cronológica do mais recente para o mais antigo
     private function listarPosts(){
         $post = new Post(); // criar um objeto do tipo Post para poder acessar o método listarPosts()
         $listaPosts = $post->listarPosts();

@@ -1,3 +1,9 @@
+<?php
+
+$usuarioLogado = isset ($_SESSION ['sessionUserName'])? $_SESSION['sessionUserName']['0']:[];
+var_dump($usuarioLogado);
+?>
+
 <header>
         <nav class="navbar topo-instagran justify-content-center">
             <a class="navbar-brand" href="/fakeinstagram/posts">
@@ -6,12 +12,21 @@
             </a>
 
             <ul class="nav">
+            <?php if($usuarioLogado) { ?>
+                <li class="nav-item">
+                    <a class="nav-link disabled"> <?php "Oi, ".$usuarioLogado ?> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/fakeinstagram/logout-user">Sair</a>
+                </li>
+            <?php } else { ?>
                 <li class="nav-item">
                     <a class="nav-link active" href="/fakeinstagram/formulario-user">Cadastro</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/fakeinstagram/formulario-login-user">Login</a>
                 </li>
+            <?php } ?>
             </ul>
         </nav>
 </header>

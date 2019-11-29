@@ -9,17 +9,15 @@ class Login extends Conexao {
         // comunicando com o banco de dados
         $db = parent::criarConexao();  
 
-        // pegando do banho as informações de usuário e senha
+        // pegando do banco as informações de usuário e senha
         $query = $db->prepare("SELECT * FROM users WHERE email=? AND senha=?");
         $query->execute([$email, $senha]);
 
-        // rever essa condicional
+        // transformando informações em array assoc
         if ($query != false) {
             $resultadoLogin = $query->fetchAll(PDO::FETCH_ASSOC);
         }
-
-        return $resultadoLogin;
-
+        return $resultadoLogin; 
 
     }
 

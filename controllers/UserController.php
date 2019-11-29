@@ -20,7 +20,12 @@ class UserController {
             case "formulario-login-user":
                 $this->viewFormularioLoginUser();
             break;
-            
+            case "autenticar-login-user":
+                $this->autenticarUser();
+            break;
+            case "logout-user":
+                $this->logoutUser();
+            break;
         }
     }
 
@@ -29,7 +34,7 @@ class UserController {
         include "views/newUser.php";
     }
 
-    // pegando informações do formulário e enviando via post para o banco de dados
+    // pegando informações do formulário e enviando para o banco de dados
     private function cadastroUser(){
 
         //nomeCompleto, email e senha inseridos no formulário de cadastro
@@ -68,17 +73,29 @@ class UserController {
         $senha = $_POST['senha'];
 
         //criando objeto Login
-        $user = new Login(); 
-        $resultado = $user->usuarioLogado($email, $senha);
+        $login = new Login(); 
+        $resultado = $login->usuarioLogado($email, $senha);
 
-        //verificação
-        if ($resultado){
-            header('Location:/fakeinstagram/posts'); 
+        if($resultado) {
+            $_SESSION['sessionUserName'] = $resultado[0]['nomeCompleto'];
+            $_SESSION['sessionUserId']  = $resultado[0]['id'];
+
+            header('Location:/fakeinstagram/posts');
         } else {
-            echo "Deu errado!!";
+            echo "E-mail ou senha inválidos.";
         }
 
 
     }
+
+       
+
+        // logout do usuário
+        private function logoutUser(){
+            session_start();
+            session_destroy();
+            header('Location:/fakeinstagram/posts');
+          }
+
 
 }
