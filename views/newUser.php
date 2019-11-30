@@ -16,19 +16,19 @@
         <form action="/fakeinstagram/cadastrar-user" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="imagemPerfil">Foto de Perfil</label>
-                <input type="file" class="form-control-file" name="imagemPerfil">
+                <input type="file" class="form-control-file" name="imagemPerfil" id="imagemPerfil">
             </div>
             <div class="form-group">
                 <label for="nomeCompleto">Nome Completo</label>
-                <input type="text" class="form-control" name="nomeCompleto" placeholder="Insira seu nome completo" required>
+                <input type="text" class="form-control" name="nomeCompleto" placeholder="Insira seu nome completo" id="nomeCompleto" required>
             </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control" name="email" placeholder="Insira seu e-mail" required>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Insira seu e-mail" required>
             </div>
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" class="form-control" name="senha" placeholder="Insira sua senha de 8 dígitos" required>
+                <input type="password" class="form-control" name="senha" placeholder="Insira sua senha de 8 dígitos" id="senha" required>
             </div>
             <button type="submit" class="btn btn-success">Cadastrar</button>
         </form>

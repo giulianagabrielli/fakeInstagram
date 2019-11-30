@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include_once "models/Post.php";
 
 class PostController {
@@ -21,7 +22,12 @@ class PostController {
 
     // formulário de novo post
     private function viewFormularioPost(){
-        include "views/newPost.php";
+        if(isset($_SESSION['sessionUserName'][0])){
+            include "views/newPost.php";
+        } else {
+            include "views/newLogin.php";
+        }
+        
     }
 
     // visualização das imagens postadas
@@ -40,15 +46,19 @@ class PostController {
         $caminhoSalvar = "views/img/$nomeArquivo";
         move_uploaded_file($linkTemp, $caminhoSalvar);
 
-        // usuário logado
-        $userId = $_SESSION['sessionUserId']['user_id']['0'];
+        // user_id
+        $id = $_SESSION['sessionUserId'][0];
 
         // criando objeto Post
         $post = new Post(); 
-        $resultado = $post->criarPost($caminhoSalvar, $descricao, $user_id); 
+        $resultado = $post->criarPost($caminhoSalvar, $descricao, $id); 
 
         // validação
         if ($resultado){
+        
+            // iniciando sessão
+            $_SESSION['sessionUserId'] = [$resultado[0]['id']];
+
             header('Location:/fakeinstagram/posts');
         } else {
             echo "Não foi possível cadastrar o post!";

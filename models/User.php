@@ -10,7 +10,7 @@ class User extends Conexao {
         $db = parent::criarConexao();  
 
         // colocando dados no banco 
-        $query = $db->prepare("INSERT INTO users(imagemPerfil, nomeCompleto, email, senha) values(?,?,?,?)");
+        $query = $db->prepare("INSERT INTO users (imagemPerfil, nomeCompleto, email, senha) values(?,?,?,?)");
         return $query->execute([$caminhoImagemPerfil, $nomeCompleto, $email, $senha]);
     }
 

@@ -31,13 +31,14 @@ class UserController {
         include "views/newUser.php";
     }
 
-    // pegando informações do formulário e enviando para o banco de dados
+    // pegando informações do formulário de novo usuário e enviando para o banco de dados
     private function cadastroUser(){
 
         //nomeCompleto, email e senha inseridos no formulário de cadastro
         $nomeCompleto = $_POST['nomeCompleto'];
         $email = $_POST['email'];
-        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+        $senha = $_POST['senha'];
+       // $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
         //imagem de perfil inserida no formulário de cadastro
         $arquivoImg = $_FILES['imagemPerfil']['name']; 
@@ -75,10 +76,10 @@ class UserController {
 
         // verificação se o dado enviado pelo usuário é o mesmo armazenado no banco de dados
         if($resultado) {
-            // criando sessão de usuário logado
-            $_SESSION['sessionUserName'] = $resultado[0]['nomeCompleto'];
-            // $_SESSION["sessionUserId"]  = [$resultado[0]["id"]];
 
+            // criando sessão de usuário logado
+            $_SESSION['sessionUserName'] = [$resultado[0]['nomeCompleto']];
+            
             header('Location:/fakeinstagram/posts');
         } else {
             echo "E-mail ou senha inválidos.";
@@ -88,6 +89,7 @@ class UserController {
     // logout do usuário
     private function logoutUser(){
         session_start();
+        session_unset();
         session_destroy();
         header('Location:/fakeinstagram/posts');
     }

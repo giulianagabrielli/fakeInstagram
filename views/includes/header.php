@@ -1,8 +1,9 @@
 <?php
 
 // iniciar sessão se existir usuário logado
-$usuarioLogado = isset ($_SESSION ['sessionUserName'])? $_SESSION['sessionUserName']:[];
-var_dump($usuarioLogado);
+//session_start();
+$nomeUsuario = isset ($_SESSION ['sessionUserName'])? $_SESSION['sessionUserName'][0]:[];
+//print_r($nomeUsuario);
 
 ?>
 
@@ -14,9 +15,9 @@ var_dump($usuarioLogado);
             </a>
 
             <ul class="nav">
-            <?php if($usuarioLogado) { ?>
+            <?php if($nomeUsuario) { ?>
                 <li class="nav-item">
-                    <a class="nav-link disabled"> <?php "Oi, ".$usuarioLogado ?> </a>
+                    <a class="nav-link disabled"> <?php echo "Olá, $nomeUsuario" ?> </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="/fakeinstagram/logout-user">Sair</a>

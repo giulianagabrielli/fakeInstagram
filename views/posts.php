@@ -1,5 +1,10 @@
 <?php
     $posts = $_REQUEST['posts'];
+    //var_dump ($posts);
+
+    $userId = isset ($_SESSION ['sessionUserId'])? $_SESSION['sessionUserId'][0]:[];
+    // print_r($idUsuario);
+    // exit;
 ?>
 
 
@@ -21,7 +26,7 @@
         <div class="card mt-5">
             <div class="row">
                 <img src="<?php echo $post->imagemPerfil ?>" alt="Imagem de Perfil">   
-                <p class="card-text"> <?php echo $post->nomeCompleto ?> </p>
+                <p class="card-text"> <?php echo $userId ?> </p>
             </div>
             <img id="cardimg" src="<?php echo $post->img ?>" alt="Card image cap"> 
             <div class="card-body">
