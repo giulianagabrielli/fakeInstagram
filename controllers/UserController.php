@@ -20,7 +20,7 @@ class UserController {
             case "formulario-login-user":
                 $this->viewFormularioLoginUser(); // função que visualiza o formulário de login do usuário
             break;
-            case "logout-user":
+            case "logout-user": // função para deslogar o usuário
                 $this->logoutUser();
             break;
         }
@@ -37,7 +37,7 @@ class UserController {
         //nomeCompleto, email e senha inseridos no formulário de cadastro
         $nomeCompleto = $_POST['nomeCompleto'];
         $email = $_POST['email'];
-        $senha = $_POST['senha'];
+        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
         //imagem de perfil inserida no formulário de cadastro
         $arquivoImg = $_FILES['imagemPerfil']['name']; 
@@ -70,14 +70,14 @@ class UserController {
         $senha = $_POST['senha'];
 
         //criando objeto Login e acessando a função usuarioLogado() em User.php
-        $login = new Login(); 
-        $resultado = $login->usuarioLogado($email, $senha);
+        $user = new User(); 
+        $resultado = $user->usuarioLogado($email, $senha);
 
         // verificação se o dado enviado pelo usuário é o mesmo armazenado no banco de dados
         if($resultado) {
             // criando sessão de usuário logado
-            $_SESSION["sessionUserName"] = [$resultado[0]["nomeCompleto"]];
-            $_SESSION["sessionUserId"]  = [$resultado[0]["id"]];
+            $_SESSION['sessionUserName'] = $resultado[0]['nomeCompleto'];
+            // $_SESSION["sessionUserId"]  = [$resultado[0]["id"]];
 
             header('Location:/fakeinstagram/posts');
         } else {

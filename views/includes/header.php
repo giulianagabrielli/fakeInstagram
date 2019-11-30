@@ -1,8 +1,8 @@
 <?php
 
 // iniciar sessão se existir usuário logado
-$usuarioLogado = isset ($_SESSION ["sessionUserName"])? $_SESSION["sessionUserName"][0]:[];
-// var_dump($usuarioLogado);
+$usuarioLogado = isset ($_SESSION ['sessionUserName'])? $_SESSION['sessionUserName']:[];
+var_dump($usuarioLogado);
 
 ?>
 

@@ -23,9 +23,9 @@
                 <img src="<?php echo $post->imagemPerfil ?>" alt="Imagem de Perfil">   
                 <p class="card-text"> <?php echo $post->nomeCompleto ?> </p>
             </div>
-            <img id="cardimg" src="<?php echo $post->img; ?>" alt="Card image cap"> <!-- seta magra pra acessar o atributo do objeto. Seria a coluna do banco de dados -->
+            <img id="cardimg" src="<?php echo $post->img ?>" alt="Card image cap"> 
             <div class="card-body">
-                <p class="card-text"> <?php echo $post->descricao; ?></p>
+                <p class="card-text"> <?php echo $post->descricao ?></p>
             </div>
         </div>
     <?php endforeach; ?>

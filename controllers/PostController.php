@@ -41,11 +41,11 @@ class PostController {
         move_uploaded_file($linkTemp, $caminhoSalvar);
 
         // usuário logado
-        $usuarioLogado = $_SESSION['id_logado']['0'];
+        $userId = $_SESSION['sessionUserId']['user_id']['0'];
 
         // criando objeto Post
         $post = new Post(); 
-        $resultado = $post->criarPost($caminhoSalvar, $descricao, $usuarioLogado); 
+        $resultado = $post->criarPost($caminhoSalvar, $descricao, $user_id); 
 
         // validação
         if ($resultado){
