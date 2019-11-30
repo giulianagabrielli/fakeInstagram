@@ -1,7 +1,9 @@
 <?php
 
-$usuarioLogado = isset ($_SESSION ['sessionUserName'])? $_SESSION['sessionUserName']['0']:[];
-var_dump($usuarioLogado);
+// iniciar sessão se existir usuário logado
+$usuarioLogado = isset ($_SESSION ["sessionUserName"])? $_SESSION["sessionUserName"][0]:[];
+// var_dump($usuarioLogado);
+
 ?>
 
 <header>

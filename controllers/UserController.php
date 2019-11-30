@@ -1,27 +1,24 @@
 <?php
 
-include_once "models/User.php";
+session_start();
 
-include_once "models/Login.php";
+include_once "models/User.php";
 
 class UserController {
     
     public function acao($rotas){
         switch($rotas){
             case "cadastrar-user":
-                $this->cadastroUser();
+                $this->cadastroUser(); // função que cadastra o usuário
             break;   
             case "formulario-user":
-                $this->viewFormularioUser();
+                $this->viewFormularioUser(); // função que visualiza o formulário de cadastro do usuário
             break;
             case "login-user":
-                $this->loginUser();
+                $this->loginUser(); // função que loga o usuário
             break;
             case "formulario-login-user":
-                $this->viewFormularioLoginUser();
-            break;
-            case "autenticar-login-user":
-                $this->autenticarUser();
+                $this->viewFormularioLoginUser(); // função que visualiza o formulário de login do usuário
             break;
             case "logout-user":
                 $this->logoutUser();
@@ -43,16 +40,16 @@ class UserController {
         $senha = $_POST['senha'];
 
         //imagem de perfil inserida no formulário de cadastro
-        $imagemPerfil = $_FILES['imagemPerfil']['name']; 
+        $arquivoImg = $_FILES['imagemPerfil']['name']; 
         $linkTemp = $_FILES ['imagemPerfil']['tmp_name'];
-        $caminhoImagemPerfil = "views/img/$imagemPerfil";
+        $caminhoImagemPerfil = "views/img/$arquivoImg";
         move_uploaded_file($linkTemp, $caminhoImagemPerfil);
 
-        //criando objeto User
+        //criando objeto User e acessando o método criarUsuario() de User.php
         $user = new User(); 
         $resultado = $user->criarUsuario($caminhoImagemPerfil, $nomeCompleto, $email, $senha);
 
-        //verificação
+        //verificação do cadastro de novo usuário
         if ($resultado){
             header('Location:/fakeinstagram/posts'); 
         } else {
@@ -65,37 +62,35 @@ class UserController {
         include "views/newLogin.php";
     }
 
-    // pegando informações do formulário de login via post
+    // pegando informações do formulário de login 
     private function loginUser(){
 
         //email e senha inseridos no formulário de login
         $email = $_POST['email'];
         $senha = $_POST['senha'];
 
-        //criando objeto Login
+        //criando objeto Login e acessando a função usuarioLogado() em User.php
         $login = new Login(); 
         $resultado = $login->usuarioLogado($email, $senha);
 
+        // verificação se o dado enviado pelo usuário é o mesmo armazenado no banco de dados
         if($resultado) {
-            $_SESSION['sessionUserName'] = $resultado[0]['nomeCompleto'];
-            $_SESSION['sessionUserId']  = $resultado[0]['id'];
+            // criando sessão de usuário logado
+            $_SESSION["sessionUserName"] = [$resultado[0]["nomeCompleto"]];
+            $_SESSION["sessionUserId"]  = [$resultado[0]["id"]];
 
             header('Location:/fakeinstagram/posts');
         } else {
             echo "E-mail ou senha inválidos.";
         }
-
-
     }
 
-       
-
-        // logout do usuário
-        private function logoutUser(){
-            session_start();
-            session_destroy();
-            header('Location:/fakeinstagram/posts');
-          }
+    // logout do usuário
+    private function logoutUser(){
+        session_start();
+        session_destroy();
+        header('Location:/fakeinstagram/posts');
+    }
 
 
 }
