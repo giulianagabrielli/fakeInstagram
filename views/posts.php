@@ -24,9 +24,9 @@
     <main class="board">
     <?php foreach($posts as $post): ?>
         <div class="card mt-5">
-            <div class="row">
-                <img src="<?php echo $post->imagemPerfil ?>" alt="Imagem de Perfil">   
-                <p class="card-text"> <?php echo $userId ?> </p>
+            <div class="row m-1">
+                <img class="rounded-circle" src="<?php echo $post->imagemPerfil ?>" alt="Imagem de Perfil" width=50 height=50>   
+                <p class="card-text font-weight-bold ml-2"> <?php echo $post->nomeCompleto ?> </p>
             </div>
             <img id="cardimg" src="<?php echo $post->img ?>" alt="Card image cap"> 
             <div class="card-body">

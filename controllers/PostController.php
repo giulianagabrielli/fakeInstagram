@@ -48,6 +48,8 @@ class PostController {
 
         // user_id
         $id = $_SESSION['sessionUserId'][0];
+        // var_dump($_SESSION);
+        // exit;
 
         // criando objeto Post
         $post = new Post(); 
@@ -56,9 +58,6 @@ class PostController {
         // validação
         if ($resultado){
         
-            // iniciando sessão
-            $_SESSION['sessionUserId'] = [$resultado[0]['id']];
-
             header('Location:/fakeinstagram/posts');
         } else {
             echo "Não foi possível cadastrar o post!";

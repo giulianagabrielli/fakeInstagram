@@ -79,6 +79,8 @@ class UserController {
 
             // criando sessão de usuário logado
             $_SESSION['sessionUserName'] = [$resultado[0]['nomeCompleto']];
+            $_SESSION['sessionUserId'] = [$resultado[0]['id']];
+        
             
             header('Location:/fakeinstagram/posts');
         } else {
