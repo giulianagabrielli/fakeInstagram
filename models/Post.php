@@ -4,22 +4,18 @@ include_once "Conexao.php";
 
 class Post extends Conexao {
 
-    public function criarPost($img, $descricao, $user_id){ 
-        // Comunicando com o banco de dados. Para acessar um método da classe mãe: parent. 
+    public function createPost($img, $description, $user_id){
         $db = parent::criarConexao();
 
         $query = $db->prepare("INSERT INTO posts (img, descricao, user_id) values(?,?,?)");
-        return $query->execute([$img, $descricao, $user_id]);
+        return $query->execute([$img, $description, $user_id]);
     }
 
-    public function listarPosts(){ 
+    public function listPosts(){ 
         $db = parent::criarConexao(); 
 
         $query = $db->query('SELECT posts.id, posts.img, posts.descricao, users.nomeCompleto, users.imagemPerfil from posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.id DESC'); 
-        $resultado = $query->fetchAll(PDO::FETCH_OBJ); 
-        return $resultado;
-        
+        $result = $query->fetchAll(PDO::FETCH_OBJ); 
+        return $result;
     }
-
-
 }

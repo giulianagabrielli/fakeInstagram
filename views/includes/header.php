@@ -1,9 +1,6 @@
 <?php
 
-// iniciar sessão se existir usuário logado
-//session_start();
-$nomeUsuario = isset ($_SESSION ['sessionUserName'])? $_SESSION['sessionUserName'][0]:[];
-//print_r($nomeUsuario);
+$userName = isset ($_SESSION ['sessionUserName'])? $_SESSION['sessionUserName'][0]:[];
 
 ?>
 
@@ -15,9 +12,9 @@ $nomeUsuario = isset ($_SESSION ['sessionUserName'])? $_SESSION['sessionUserName
             </a>
 
             <ul class="nav">
-            <?php if($nomeUsuario) { ?>
+            <?php if($userName) { ?>
                 <li class="nav-item">
-                    <a class="nav-link disabled"> <?php echo "Olá, $nomeUsuario" ?> </a>
+                    <a class="nav-link disabled"> <?php echo "Olá, $userName" ?> </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="/fakeinstagram/logout-user">Sair</a>

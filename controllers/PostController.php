@@ -1,73 +1,70 @@
 <?php
-
+// iniciando sessão
 session_start();
+
 include_once "models/Post.php";
 
 class PostController {
     
-    public function acao($rotas){
+    public function acao($rotas){ //associando rotas a métodos
         switch($rotas){
-            case "posts":
-                $this->listarPosts();
-            break;
             case "formulario-post":
-                $this->viewFormularioPost();
+                $this->viewFormPost();
             break;
             case "cadastrar-post":
-                $this->cadastroPost();
-            break;
-                
+                $this->registerPost();
+            break;    
+            case "posts":
+                $this->listPosts();
+            break;   
         }
     }
 
-    // formulário de novo post
-    private function viewFormularioPost(){
+    // visualização de formulário de novo post
+    private function viewFormPost(){
         if(isset($_SESSION['sessionUserName'][0])){
             include "views/newPost.php";
         } else {
             include "views/newLogin.php";
         }
-        
     }
 
-    // visualização das imagens postadas
+    // visualização das imagens postadas 
     private function viewPosts(){
         include "views/posts.php";
     }
 
-    // pegando as informações do formulário de post e enviando para o banco de dados
-    private function cadastroPost(){
+    // pegando as informações do formulário de post e enviando para db
+    private function registerPost(){
         // descrição
-        $descricao = $_POST['descricao']; 
+        $description = $_POST['descricao']; 
 
         // imagem
-        $nomeArquivo = $_FILES['img']['name']; 
+        $fileName = $_FILES['img']['name']; 
         $linkTemp = $_FILES ['img']['tmp_name'];
-        $caminhoSalvar = "views/img/$nomeArquivo";
-        move_uploaded_file($linkTemp, $caminhoSalvar);
+        $savingImgFile = "views/img/$fileName";
+        move_uploaded_file($linkTemp, $savingImgFile);
 
-        // pegando o id através da sessão
+        // pegando o id através da sessão aberta
         $id = $_SESSION['sessionUserId'][0];
 
-        // criando objeto Post
+        // acessando método da classe Post
         $post = new Post(); 
-        $resultado = $post->criarPost($caminhoSalvar, $descricao, $id); 
+        $result = $post->createPost($savingImgFile, $description, $id); 
 
         // validação
-        if ($resultado){
+        if ($result){
             header('Location:/fakeinstagram/posts');
         } else {
             echo "Não foi possível cadastrar o post!";
         }
     }
 
-    // colocando os posts em ordem cronológica do mais recente para o mais antigo
-    private function listarPosts(){
-        $post = new Post(); // criar um objeto do tipo Post para poder acessar o método listarPosts()
-        $listaPosts = $post->listarPosts();
-        $_REQUEST['posts'] = $listaPosts; // pega tudo do get e do post. Criando uma associação da listaPosts com a superglobal $_REQUEST 
-        $this->viewPosts(); // chamando o método viewPosts
+    // listando os posts na página principal
+    private function listPosts(){
+        $post = new Post(); 
+        $listPosts = $post->listPosts();
+        $_REQUEST['posts'] = $listPosts; 
+        $this->viewPosts(); 
     }
-
-
 }

@@ -1,10 +1,8 @@
 <?php
     $posts = $_REQUEST['posts'];
-    //var_dump ($posts);
 
     $userId = isset ($_SESSION ['sessionUserId'])? $_SESSION['sessionUserId'][0]:[];
-    // print_r($idUsuario);
-    // exit;
+   
 ?>
 
 
