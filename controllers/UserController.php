@@ -38,7 +38,7 @@ class UserController {
         $fullName = $_POST['nomeCompleto'];
         $email = $_POST['email'];
         $password = $_POST['senha'];
-       // ?????? $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+        // Está dando um erro quando tento criptografar a senha e não sei pq: $password = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
         //imagem de perfil 
         $fileName = $_FILES['imagemPerfil']['name']; 
