@@ -46,10 +46,8 @@ class PostController {
         $caminhoSalvar = "views/img/$nomeArquivo";
         move_uploaded_file($linkTemp, $caminhoSalvar);
 
-        // user_id
+        // pegando o id através da sessão
         $id = $_SESSION['sessionUserId'][0];
-        // var_dump($_SESSION);
-        // exit;
 
         // criando objeto Post
         $post = new Post(); 
@@ -57,7 +55,6 @@ class PostController {
 
         // validação
         if ($resultado){
-        
             header('Location:/fakeinstagram/posts');
         } else {
             echo "Não foi possível cadastrar o post!";
